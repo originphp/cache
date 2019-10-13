@@ -16,7 +16,19 @@ $ composer require originphp/cache
 
 In your bootstrap file you will the configuration for cache. The caching library can work with multiple configurations and engines at the same time. 
 
-Once the configuration is out the way, using the cache is pretty straightforward.
+
+
+Once the configuration is out the way, using the cache is pretty straightforward. Configure a default Cache store
+
+```php
+Cache::config('default', [
+    'engine' => 'File',
+    'duration' => '+60 minutes', // string or number of seconds e.g. 3600,
+    'prefix' => 'cache_'
+    'serialize' => true // set to false if you going to cache strings such as output
+    'path' => dirname(__DIR__) . '/cache'
+     ]);
+```
 
 ## Caching
 
