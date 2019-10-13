@@ -3,7 +3,12 @@
     "description": "OriginPHP Cache",
     "type": "library",
     "keywords": [
-        "originphp"
+        "originphp",
+        "cache",
+        "redis",
+        "memcached",
+        "file",
+        "apcu"
     ],
     "homepage": "https://www.originphp.com",
     "license": "MIT",
