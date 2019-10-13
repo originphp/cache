@@ -15,6 +15,7 @@
 
 namespace Origin\Test\Cache\Engine;
 
+use InvalidArgumentException;
 use Origin\Cache\Engine\FileEngine;
 use Origin\Cache\Exception\Exception;
 
@@ -30,6 +31,12 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
         }
         $cache = new FileEngine(['path' => $this->path, 'duration' => '+ 10 seconds']);
         $cache->clear();
+    }
+
+    public function testInvalidPath()
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new FileEngine(['path' => '/somewhere']);
     }
 
     public function testSet()
