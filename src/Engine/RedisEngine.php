@@ -27,7 +27,6 @@ declare(strict_types = 1);
 namespace Origin\Cache\Engine;
 
 use Redis;
-use Origin\Cache\Engine\RedisConnection;
 
 class RedisEngine extends BaseEngine
 {

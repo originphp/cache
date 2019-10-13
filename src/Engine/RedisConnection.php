@@ -41,15 +41,15 @@ class RedisConnection
      */
     public static function connect(array $config): Redis
     {
-        if (!extension_loaded('redis')) {
+        if (! extension_loaded('redis')) {
             throw new Exception('Redis extension not loaded.');
         }
         $redis = new Redis();
         $result = false;
         try {
-            if (!empty($config['path'])) {
+            if (! empty($config['path'])) {
                 $result = $redis->connect($config['path']);
-            } elseif (!empty($config['persistent'])) {
+            } elseif (! empty($config['persistent'])) {
                 $id = ($config['persistent'] === true) ? 'origin-php' : (string) $config['persistent'];
                 $result = $redis->pconnect($config['host'], $config['port'], $config['timeout'], $id);
             } else {
@@ -63,7 +63,7 @@ class RedisConnection
             $result = $redis->auth($config['password']);
         }
 
-        if (!$result) {
+        if (! $result) {
             throw new Exception('Error connecting to Redis server.');
         }
 

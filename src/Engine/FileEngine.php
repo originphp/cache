@@ -33,7 +33,7 @@ class FileEngine extends BaseEngine
 
     public function initialize(array $config = []): void
     {
-        if (empty($config['path']) or !is_dir($config['path'])) {
+        if (empty($config['path']) or ! is_dir($config['path'])) {
             throw new InvalidArgumentException('Invalid path');
         }
     }
@@ -121,7 +121,7 @@ class FileEngine extends BaseEngine
             }
         }
 
-        return !in_array(false, $result);
+        return ! in_array(false, $result);
     }
 
     public function increment(string $key, int $offset = 1): int

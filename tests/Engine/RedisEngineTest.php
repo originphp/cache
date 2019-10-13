@@ -16,8 +16,8 @@
 namespace Origin\Test\Cache\Engine;
 
 use Redis;
-use Origin\Cache\Exception\Exception;
 use Origin\Cache\Engine\RedisEngine;
+use Origin\Cache\Exception\Exception;
 
 class MockRedisEngine extends RedisEngine
 {
@@ -31,11 +31,11 @@ class RedisEngineTest extends \PHPUnit\Framework\TestCase
 {
     protected function setUp(): void
     {
-        if (!extension_loaded('redis')) {
+        if (! extension_loaded('redis')) {
             $this->markTestSkipped('Redis extension not loaded');
         }
 
-        if (!getenv('REDIS_HOST') or !getenv('REDIS_PORT')) {
+        if (! getenv('REDIS_HOST') or ! getenv('REDIS_PORT')) {
             $this->markTestSkipped('Redis settings not found');
         }
 

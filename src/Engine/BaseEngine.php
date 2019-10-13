@@ -34,12 +34,10 @@ abstract class BaseEngine
             $this->initialize($config);
         }
 
-        if (isset($config['duration']) and !is_numeric($config['duration'])) {
+        if (isset($config['duration']) and ! is_numeric($config['duration'])) {
             $this->config['duration'] = strtotime($this->config['duration']) - time();
         }
     }
-
-
 
     /**
      * writes a value in the cache

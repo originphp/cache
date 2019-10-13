@@ -31,10 +31,10 @@ class MemcachedEngineTest extends \PHPUnit\Framework\TestCase
 {
     protected function setUp(): void
     {
-        if (!extension_loaded('memcached')) {
+        if (! extension_loaded('memcached')) {
             $this->markTestSkipped('Memcached extension not loaded');
         }
-        if (!getenv('MEMCACHED_HOST') or !getenv('MEMCACHED_PORT')) {
+        if (! getenv('MEMCACHED_HOST') or ! getenv('MEMCACHED_PORT')) {
             $this->markTestSkipped('Memcached settings not found');
         }
 

@@ -1,6 +1,5 @@
 <?php
 
-declare(strict_types=1);
 /**
  * OriginPHP Framework
  * Copyright 2018 - 2019 Jamiel Sharief.
@@ -14,12 +13,14 @@ declare(strict_types=1);
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
+declare(strict_types=1);
+
 namespace Origin\Cache;
 
-use Origin\Configurable\StaticConfigurable as Configurable;
+use InvalidArgumentException;
 use Origin\Cache\Engine\BaseEngine;
 use Origin\Cache\Engine\NullEngine;
-use InvalidArgumentException;
+use Origin\Configurable\StaticConfigurable as Configurable;
 
 class Cache
 {
@@ -91,7 +92,7 @@ class Cache
             if (isset($config['engine'])) {
                 $config['className'] = __NAMESPACE__  . "\Engine\\{$config['engine']}Engine";
             }
-            if (empty($config['className']) or !class_exists($config['className'])) {
+            if (empty($config['className']) or ! class_exists($config['className'])) {
                 throw new InvalidArgumentException("Cache engine for {$name} could not be found");
             }
 

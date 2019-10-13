@@ -24,7 +24,7 @@ class CacheTest extends \PHPUnit\Framework\TestCase
     protected function setUp(): void
     {
         $path = sys_get_temp_dir() . '/cache';
-        if (!is_dir($path)) {
+        if (! is_dir($path)) {
             mkdir($path);
         }
 
@@ -80,7 +80,7 @@ class CacheTest extends \PHPUnit\Framework\TestCase
 
     public function testIncrementDecrement()
     {
-        if (!extension_loaded('apcu')) {
+        if (! extension_loaded('apcu')) {
             $this->markTestSkipped('Apcu extension not loaded');
         }
         Cache::config('counter', ['engine' => 'Apcu']);
