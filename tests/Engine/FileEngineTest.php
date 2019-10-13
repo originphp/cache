@@ -1,4 +1,5 @@
 <?php
+
 /**
  * OriginPHP Framework
  * Copyright 2018 - 2019 Jamiel Sharief.
@@ -20,22 +21,22 @@ use Origin\Cache\Exception\Exception;
 class FileEngineTest extends \PHPUnit\Framework\TestCase
 {
     protected $path;
-    
+
     protected function setUp(): void
     {
         $this->path = sys_get_temp_dir() . '/cache';
         if (! is_dir($this->path)) {
             mkdir($this->path);
         }
-        $cache = new FileEngine(['path' => $this->path]);
+        $cache = new FileEngine(['path' => $this->path, 'duration' => '+ 10 seconds']);
         $cache->clear();
     }
-    
+
     public function testSet()
     {
         $cache = new FileEngine(['path' => $this->path]);
         $this->assertTrue($cache->write('foo', 'bar'));
-        $this->assertEquals('bar', unserialize(file_get_contents($this->path .'/origin_foo')));
+        $this->assertEquals('bar', unserialize(file_get_contents($this->path . '/origin_foo')));
     }
     /**
      * @depends testSet
@@ -66,7 +67,7 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
         $cache->write('foo', 'bar');
         $this->assertTrue($cache->exists('foo'));
         $this->assertTrue($cache->delete('foo'));
-        
+
         $this->assertFalse($cache->exists('foo'));
         $this->assertFalse($cache->delete('foo'));
     }
