@@ -124,12 +124,18 @@ class FileEngine extends BaseEngine
         return ! in_array(false, $result);
     }
 
-    public function increment(string $key, int $offset = 1): int
+    /**
+     * {@inheritDoc}
+     */
+    public function increment(string $key, int $offset = 1)
     {
         throw new Exception('File cache cannot be incremented.');
     }
 
-    public function decrement(string $key, int $offset = 1): int
+    /**
+     * {@inheritDoc}
+     */
+    public function decrement(string $key, int $offset = 1)
     {
         throw new Exception('File cache cannot be decremented.');
     }

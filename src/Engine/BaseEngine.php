@@ -83,18 +83,18 @@ abstract class BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    abstract public function increment(string $key, int $offset = 1): int;
+    abstract public function increment(string $key, int $offset = 1);
 
     /**
      * Decreases a value
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    abstract public function decrement(string $key, int $offset = 1): int;
+    abstract public function decrement(string $key, int $offset = 1);
 
     /**
      * Creates a friendly key for use with caching engines

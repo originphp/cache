@@ -97,9 +97,9 @@ class ApcuEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function increment(string $key, int $offset = 1): int
+    public function increment(string $key, int $offset = 1)
     {
         return apcu_inc($this->key($key), $offset);
     }
@@ -109,9 +109,9 @@ class ApcuEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function decrement(string $key, int $offset = 1): int
+    public function decrement(string $key, int $offset = 1)
     {
         return apcu_dec($this->key($key), $offset);
     }

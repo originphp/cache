@@ -146,9 +146,9 @@ class RedisEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function increment(string $key, int $offset = 1) : int
+    public function increment(string $key, int $offset = 1)
     {
         $key = $this->key($key);
         $value = (int) $this->Redis->incrBy($key, $offset);
@@ -164,9 +164,9 @@ class RedisEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function decrement(string $key, int $offset = 1): int
+    public function decrement(string $key, int $offset = 1)
     {
         $key = $this->key($key);
         $value = (int) $this->Redis->decr($key, $offset);

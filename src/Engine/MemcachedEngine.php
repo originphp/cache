@@ -167,9 +167,9 @@ class MemcachedEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function increment(string $key, int $offset = 1) : int
+    public function increment(string $key, int $offset = 1)
     {
         return $this->Memcached->increment($this->key($key), $offset);
     }
@@ -179,9 +179,9 @@ class MemcachedEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function decrement(string $key, int $offset = 1): int
+    public function decrement(string $key, int $offset = 1)
     {
         return $this->Memcached->decrement($this->key($key), $offset);
     }

@@ -57,11 +57,11 @@ class NullEngineTest extends \PHPUnit\Framework\TestCase
     public function testIncrement()
     {
         $cache = new NullEngine();
-        $this->assertEquals(1, $cache->increment('counter'));
+        $this->assertTrue($cache->increment('counter'));
     }
     public function testDecrement()
     {
         $cache = new NullEngine();
-        $this->assertEquals(1, $cache->decrement('counter'));
+        $this->assertTrue($cache->decrement('counter'));
     }
 }

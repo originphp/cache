@@ -99,12 +99,12 @@ class ArrayEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function increment(string $key, int $offset = 1): int
+    public function increment(string $key, int $offset = 1)
     {
         $key = $this->key($key);
-        if (! $this->exists($key)) {
+        if (!isset($this->data[$key])) {
             $this->data[$key] = 0;
         }
         $this->data[$key] += $offset;
@@ -117,12 +117,12 @@ class ArrayEngine extends BaseEngine
      *
      * @param string $key
      * @param integer $offset
-     * @return integer
+     * @return integer|bool
      */
-    public function decrement(string $key, int $offset = 1): int
+    public function decrement(string $key, int $offset = 1)
     {
         $key = $this->key($key);
-        if (! $this->exists($key)) {
+        if (!isset($this->data[$key])) {
             $this->data[$key] = 0;
         }
         $this->data[$key] -= $offset;
