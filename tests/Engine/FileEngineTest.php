@@ -26,7 +26,7 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
     protected function setUp(): void
     {
         $this->path = sys_get_temp_dir() . '/cache';
-        if (!is_dir($this->path)) {
+        if (! is_dir($this->path)) {
             mkdir($this->path);
         }
         $cache = new FileEngine(['path' => $this->path, 'duration' => '+ 10 seconds']);
@@ -50,7 +50,6 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
      */
     public function testGet()
     {
-
         $cache = new FileEngine(['path' => $this->path]);
         $this->assertFalse($cache->read('foo'));
         $cache->write('foo', 'bar');
