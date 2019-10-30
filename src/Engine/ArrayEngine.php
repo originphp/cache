@@ -104,7 +104,7 @@ class ArrayEngine extends BaseEngine
     public function increment(string $key, int $offset = 1)
     {
         $key = $this->key($key);
-        if (!isset($this->data[$key])) {
+        if (! isset($this->data[$key])) {
             $this->data[$key] = 0;
         }
         $this->data[$key] += $offset;
@@ -122,7 +122,7 @@ class ArrayEngine extends BaseEngine
     public function decrement(string $key, int $offset = 1)
     {
         $key = $this->key($key);
-        if (!isset($this->data[$key])) {
+        if (! isset($this->data[$key])) {
             $this->data[$key] = 0;
         }
         $this->data[$key] -= $offset;
