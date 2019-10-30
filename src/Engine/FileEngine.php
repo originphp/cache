@@ -47,11 +47,14 @@ class FileEngine extends BaseEngine
      */
     public function write(string $key, $value): bool
     {
-        if ($value !== '' and $this->config['serialize'] === true) {
+        if ($value === '') {
+            return false;
+        }
+        if ($this->config['serialize'] === true) {
             $value = serialize($value);
         }
 
-        return (bool) file_put_contents($this->config['path'] . '/' . $this->key($key), $value);
+        return (bool) file_put_contents($this->config['path'] . '/' . $this->key($key), $value, LOCK_EX);
     }
     /**
      * Gets the value;
@@ -66,7 +69,7 @@ class FileEngine extends BaseEngine
             $expires = filemtime($filename) + $this->config['duration'];
             if ($expires > time()) {
                 $data = file_get_contents($filename);
-                if ($data !== '' and $this->config['serialize'] === true) {
+                if ($this->config['serialize'] === true) {
                     return unserialize($data);
                 }
             }
