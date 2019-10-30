@@ -44,6 +44,7 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
         $cache = new FileEngine(['path' => $this->path]);
         $this->assertTrue($cache->write('foo', 'bar'));
         $this->assertEquals('bar', unserialize(file_get_contents($this->path . '/origin_foo')));
+        $this->assertFalse($cache->write('foo', ''));
     }
     /**
      * @depends testSet
@@ -98,5 +99,25 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
         $cache = new FileEngine(['path' => $this->path]);
         $this->expectException(Exception::class);
         $cache->decrement('counter', 9);
+    }
+
+    public function testSetGetDataTypes()
+    {
+        $cache = new FileEngine(['path' => $this->path]);
+        $int = 123;
+        $cache->write('int', $int);
+        $this->assertEquals($int, $cache->read('int'));
+
+        $string = 'foo';
+        $cache->write('string', $string);
+        $this->assertEquals($string, $cache->read('string'));
+
+        $array = ['foo' => 'bar'];
+        $cache->write('array', $array);
+        $this->assertEquals($array, $cache->read('array'));
+        
+        $object = (object) $array;
+        $cache->write('object', $object);
+        $this->assertEquals($object, $cache->read('object'));
     }
 }

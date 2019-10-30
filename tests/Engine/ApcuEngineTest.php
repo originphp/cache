@@ -62,6 +62,26 @@ class ApcuEngineTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('bar', $cache->read('foo'));
     }
 
+    public function testSetGetDataTypes()
+    {
+        $cache = $this->engine();
+        $int = 123;
+        $cache->write('int', $int);
+        $this->assertEquals($int, $cache->read('int'));
+
+        $string = 'foo';
+        $cache->write('string', $string);
+        $this->assertEquals($string, $cache->read('string'));
+
+        $array = ['foo' => 'bar'];
+        $cache->write('array', $array);
+        $this->assertEquals($array, $cache->read('array'));
+        
+        $object = (object) $array;
+        $cache->write('object', $object);
+        $this->assertEquals($object, $cache->read('object'));
+    }
+
     /**
      * @depends testSet
      */

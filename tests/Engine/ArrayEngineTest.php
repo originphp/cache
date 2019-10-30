@@ -90,4 +90,24 @@ class ArrayEngineTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(109, $cache->decrement('counter'));
         $this->assertEquals(100, $cache->decrement('counter', 9));
     }
+
+    public function testSetGetDataTypes()
+    {
+        $cache = new ArrayEngine();
+        $int = 123;
+        $cache->write('int', $int);
+        $this->assertEquals($int, $cache->read('int'));
+
+        $string = 'foo';
+        $cache->write('string', $string);
+        $this->assertEquals($string, $cache->read('string'));
+
+        $array = ['foo' => 'bar'];
+        $cache->write('array', $array);
+        $this->assertEquals($array, $cache->read('array'));
+        
+        $object = (object) $array;
+        $cache->write('object', $object);
+        $this->assertEquals($object, $cache->read('object'));
+    }
 }
