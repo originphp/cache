@@ -61,7 +61,8 @@ class RedisEngineTest extends \PHPUnit\Framework\TestCase
     {
         $cache = $this->engine();
         $this->assertTrue($cache->write('foo', 'bar'));
-        $this->assertEquals('bar', $cache->redis()->get('origin_foo'));
+        $this->assertNotEmpty($cache->redis()->get('origin_foo'));
+        $this->assertEquals('bar', $cache->read('foo'));
     }
     /**
      * @depends testSet
@@ -194,5 +195,39 @@ class RedisEngineTest extends \PHPUnit\Framework\TestCase
             'port' => (int) getenv('REDIS_PORT'),
             'password' => 'secret',
         ]);
+    }
+
+    /**
+     * @depends testSet
+     */
+    public function testSetGetDataTypes()
+    {
+        $cache = $this->engine();
+        $int = 123;
+        $cache->write('int', $int);
+        $this->assertEquals($int, $cache->read('int'));
+
+        $cache->write('int', 0);
+        $this->assertEquals(0, $cache->read('int'));
+
+        $intString = '123';
+        $cache->write('intstring', $intString);
+        $this->assertEquals($intString, $cache->read('intstring'));
+
+        $string = '';
+        $cache->write('string', $string);
+        $this->assertEquals($string, $cache->read('string'));
+
+        $string = 'foo';
+        $cache->write('string', $string);
+        $this->assertEquals($string, $cache->read('string'));
+
+        $array = ['foo' => 'bar'];
+        $cache->write('array', $array);
+        $this->assertEquals($array, $cache->read('array'));
+        
+        $object = (object) $array;
+        $cache->write('object', $object);
+        $this->assertEquals($object, $cache->read('object'));
     }
 }

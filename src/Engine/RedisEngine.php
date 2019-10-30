@@ -69,6 +69,10 @@ class RedisEngine extends BaseEngine
      */
     public function write(string $key, $value) :bool
     {
+        if (! is_int($value)) {
+            $value = serialize($value);
+        }
+    
         if ($this->config['duration'] === 0) {
             return $this->Redis->set($this->key($key), $value);
         }
@@ -83,7 +87,20 @@ class RedisEngine extends BaseEngine
      */
     public function read(string $key)
     {
-        return $this->Redis->get($this->key($key));
+        $value = $this->Redis->get($this->key($key));
+
+        if ($value === false) {
+            return false;
+        }
+        if (preg_match('/\d+$/', $value)) {
+            return (int) $value;
+        }
+       
+        if (is_string($value)) {
+            $value = unserialize($value);
+        }
+        
+        return $value;
     }
     /**
      * Checks if a key exists in the cache
