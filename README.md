@@ -54,7 +54,7 @@ $value = Cache::read('key');
 
 ### Exists
 
-To check wether a key exists in the cache
+To check whether a key exists in the cache
 
 ```php
 Use Origin\Cache\Cache;
