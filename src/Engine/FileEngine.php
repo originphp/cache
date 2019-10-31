@@ -33,12 +33,12 @@ class FileEngine extends BaseEngine
 
     public function initialize(array $config = []): void
     {
-        if (empty($config['path'])) {
-            $config['path'] = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'cache';
+        if (empty($this->config['path'])) {
+            $this->config['path'] = sys_get_temp_dir() . '/cache';
         }
 
-        if (! is_dir($config['path'])) {
-            @mkdir($config['path'], 0775, true);
+        if (! is_dir($this->config['path'])) {
+            @mkdir($this->config['path'], 0775, true);
         }
     }
 
@@ -136,7 +136,13 @@ class FileEngine extends BaseEngine
      */
     public function increment(string $key, int $offset = 1)
     {
-        throw new Exception('File cache cannot be incremented.');
+        $value = 0;
+        if ($this->exists($key)) {
+            $value = $this->read($key);
+        }
+        $value += $offset;
+        $this->write($key, $value);
+        return $value;
     }
 
     /**
@@ -144,6 +150,12 @@ class FileEngine extends BaseEngine
      */
     public function decrement(string $key, int $offset = 1)
     {
-        throw new Exception('File cache cannot be decremented.');
+        $value = 0;
+        if ($this->exists($key)) {
+            $value = $this->read($key);
+        }
+        $value -= $offset;
+        $this->write($key, $value);
+        return $value;
     }
 }
