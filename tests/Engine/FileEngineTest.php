@@ -29,9 +29,9 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
 
     public function testSet()
     {
-        $cache = new FileEngine(['path']);
+        $cache = new FileEngine(['path'=> sys_get_temp_dir() .'/cache-test']);
         $this->assertTrue($cache->write('foo', 'bar'));
-        $this->assertEquals('bar', unserialize(file_get_contents(sys_get_temp_dir(). '/cache/origin_foo')));
+        $this->assertEquals('bar', unserialize(file_get_contents(sys_get_temp_dir(). '/cache-test/origin_foo')));
         $this->assertFalse($cache->write('foo', ''));
     }
     /**
