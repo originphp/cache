@@ -19,9 +19,6 @@ declare(strict_types=1);
 
 namespace Origin\Cache\Engine;
 
-use InvalidArgumentException;
-use Origin\Cache\Exception\Exception;
-
 class FileEngine extends BaseEngine
 {
     protected $defaultConfig = [
@@ -142,6 +139,7 @@ class FileEngine extends BaseEngine
         }
         $value += $offset;
         $this->write($key, $value);
+
         return $value;
     }
 
@@ -156,6 +154,7 @@ class FileEngine extends BaseEngine
         }
         $value -= $offset;
         $this->write($key, $value);
+
         return $value;
     }
 }
