@@ -33,8 +33,12 @@ class FileEngine extends BaseEngine
 
     public function initialize(array $config = []): void
     {
-        if (empty($config['path']) or ! is_dir($config['path'])) {
-            throw new InvalidArgumentException('Invalid path');
+        if (empty($config['path'])) {
+            $config['path'] = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'cache';
+        }
+
+        if (! is_dir($config['path'])) {
+            @mkdir($config['path'], 0775, true);
         }
     }
 
