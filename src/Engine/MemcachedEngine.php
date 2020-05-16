@@ -56,7 +56,7 @@ class MemcachedEngine extends BaseEngine
         'servers' => [], // if this is defined then a pool is used instead [memached]comptabile with http://php.net/manual/en/memcached.addservers.php
         'username' => null,
         'password' => null,
-        'persistent' => false, // set true or string id e.g my-app-xx-, my-app-yyy etc
+        'persistent' => false, // set true || string id e.g my-app-xx-, my-app-yyy etc
         'path' => null, // Path to memcached unix socket,
         'duration' => 3600, // memcache has limits if more than 30 days
         'prefix' => 'origin_',
@@ -79,7 +79,7 @@ class MemcachedEngine extends BaseEngine
             $msg = 'Error connecting to Memcached server(s).';
             if ($this->connect()) {
                 // Login
-                if ($this->config['username'] and $this->config['password']) {
+                if ($this->config['username'] && $this->config['password']) {
                     $this->Memcached->setOption(Memcached::OPT_BINARY_PROTOCOL, true);
                     $this->Memcached->setSaslAuthData($this->config['username'], $this->config['password']);
                 }

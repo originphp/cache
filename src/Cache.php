@@ -92,7 +92,7 @@ class Cache
             if (isset($config['engine'])) {
                 $config['className'] = __NAMESPACE__  . "\Engine\\{$config['engine']}Engine";
             }
-            if (empty($config['className']) or ! class_exists($config['className'])) {
+            if (empty($config['className']) || ! class_exists($config['className'])) {
                 throw new InvalidArgumentException("Cache engine for {$name} could not be found");
             }
 

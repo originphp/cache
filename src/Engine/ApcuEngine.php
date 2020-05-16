@@ -31,7 +31,7 @@ class ApcuEngine extends BaseEngine
         $msg = 'Apcu extension not loaded.';
         if (extension_loaded('apcu')) {
             $msg = 'Apcu extension not enabled.';
-            if ((PHP_SAPI !== 'cli' and ini_get('apc.enabled')) or (PHP_SAPI === 'cli' and ini_get('apc.enable_cli'))) {
+            if ((PHP_SAPI !== 'cli' and ini_get('apc.enabled')) || (PHP_SAPI === 'cli' and ini_get('apc.enable_cli'))) {
                 return;
             }
         }

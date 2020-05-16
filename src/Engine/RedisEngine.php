@@ -141,7 +141,7 @@ class RedisEngine extends BaseEngine
 
     public function closeConnection() : bool
     {
-        if ($this->Redis instanceof Redis and ! $this->config['persistent']) {
+        if ($this->Redis instanceof Redis && ! $this->config['persistent']) {
             $this->Redis->close();
 
             return true;
