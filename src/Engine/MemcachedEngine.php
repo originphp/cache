@@ -1,17 +1,19 @@
 <?php
-declare(strict_types = 1);
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2019 Jamiel Sharief.
+ * Copyright 2018 - 2020 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
  * portions of the Software.
  *
- * @copyright     Copyright (c) Jamiel Sharief
+ * @copyright    Copyright (c) Jamiel Sharief
  * @link         https://www.originphp.com
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @license      https://opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types=1);
+namespace Origin\Cache\Engine;
+
 /**
  * Docker Installation
  *  Add to docker-compose.yml - server host will be called 'memached'
@@ -34,9 +36,6 @@ declare(strict_types = 1);
  *
  * If you are working in Docker, then you will need to adjust the docker file and build it again using docker-compose build
  */
-
-namespace Origin\Cache\Engine;
-
 use Memcached;
 use Origin\Cache\Exception\Exception;
 
@@ -67,7 +66,7 @@ class MemcachedEngine extends BaseEngine
      *
      * @param array $config
      */
-    public function initialize(array $config) : void
+    public function initialize(array $config): void
     {
         $msg = 'Memcached extension not loaded.';
         if (extension_loaded('memcached')) {
@@ -112,7 +111,7 @@ class MemcachedEngine extends BaseEngine
      * @param mixed $value
      * @return bool
      */
-    public function write(string $key, $value) :bool
+    public function write(string $key, $value): bool
     {
         return $this->Memcached->set($this->key($key), $value, $this->config['duration']);
     }
@@ -132,7 +131,7 @@ class MemcachedEngine extends BaseEngine
      * @param string $key
      * @return boolean
      */
-    public function exists(string $key) :bool
+    public function exists(string $key): bool
     {
         $this->Memcached->get($this->key($key));
 
@@ -144,7 +143,7 @@ class MemcachedEngine extends BaseEngine
      * @param string $key
      * @return boolean
      */
-    public function delete(string $key) :bool
+    public function delete(string $key): bool
     {
         return $this->Memcached->delete($this->key($key));
     }
@@ -154,7 +153,7 @@ class MemcachedEngine extends BaseEngine
      *
      * @return bool
      */
-    public function clear() :bool
+    public function clear(): bool
     {
         return $this->Memcached->flush();
     }

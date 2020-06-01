@@ -1,23 +1,22 @@
 <?php
-declare(strict_types = 1);
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2019 Jamiel Sharief.
+ * Copyright 2018 - 2020 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
  * portions of the Software.
  *
- * @copyright     Copyright (c) Jamiel Sharief
+ * @copyright    Copyright (c) Jamiel Sharief
  * @link         https://www.originphp.com
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @license      https://opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types=1);
+namespace Origin\Cache\Engine;
+
 /**
  * This cache is for use in test suites
  */
-
-namespace Origin\Cache\Engine;
-
 class ArrayEngine extends BaseEngine
 {
     protected $defaultConfig = [
@@ -33,7 +32,7 @@ class ArrayEngine extends BaseEngine
      * @param mixed $value
      * @return bool
      */
-    public function write(string $key, $value) :bool
+    public function write(string $key, $value): bool
     {
         $this->data[$this->key($key)] = $value;
 
@@ -60,7 +59,7 @@ class ArrayEngine extends BaseEngine
      * @param string $key
      * @return boolean
      */
-    public function exists(string $key) :bool
+    public function exists(string $key): bool
     {
         return isset($this->data[$this->key($key)]);
     }
@@ -70,7 +69,7 @@ class ArrayEngine extends BaseEngine
      * @param string $key
      * @return boolean
      */
-    public function delete(string $key) :bool
+    public function delete(string $key): bool
     {
         $key = $this->key($key);
         if ($this->exists($key)) {

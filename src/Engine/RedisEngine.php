@@ -1,17 +1,19 @@
 <?php
-declare(strict_types = 1);
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2019 Jamiel Sharief.
+ * Copyright 2018 - 2020 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
  * portions of the Software.
  *
- * @copyright     Copyright (c) Jamiel Sharief
+ * @copyright    Copyright (c) Jamiel Sharief
  * @link         https://www.originphp.com
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @license      https://opensource.org/licenses/mit-license.php MIT License
  */
+declare(strict_types=1);
+namespace Origin\Cache\Engine;
+
 /**
  * Should work with phpredis
  * @see https://github.com/phpredis/phpredis
@@ -23,9 +25,6 @@ declare(strict_types = 1);
  * pecl install redis
  * echo 'extension=redis.so' >> /etc/php/7.2/cli/php.ini
  */
-
-namespace Origin\Cache\Engine;
-
 use Redis;
 
 class RedisEngine extends BaseEngine
@@ -54,7 +53,7 @@ class RedisEngine extends BaseEngine
      *
      * @param array $config  duration,prefix,path
      */
-    public function initialize(array $config) : void
+    public function initialize(array $config): void
     {
         $mergedWithDefault = $this->config();
         $this->Redis = RedisConnection::connect($mergedWithDefault);
@@ -67,7 +66,7 @@ class RedisEngine extends BaseEngine
      * @param mixed $value
      * @return bool
      */
-    public function write(string $key, $value) :bool
+    public function write(string $key, $value): bool
     {
         if (! is_int($value)) {
             $value = serialize($value);
@@ -108,7 +107,7 @@ class RedisEngine extends BaseEngine
      * @param string $key
      * @return boolean
      */
-    public function exists(string $key) :bool
+    public function exists(string $key): bool
     {
         return (bool) $this->Redis->exists($this->key($key));
     }
@@ -118,7 +117,7 @@ class RedisEngine extends BaseEngine
      * @param string $key
      * @return boolean
      */
-    public function delete(string $key) :bool
+    public function delete(string $key): bool
     {
         return $this->Redis->del($this->key($key)) > 0;
     }
@@ -128,7 +127,7 @@ class RedisEngine extends BaseEngine
      *
      * @return bool
      */
-    public function clear() :bool
+    public function clear(): bool
     {
         $keys = $this->Redis->keys($this->config['prefix'] . '*');
         $result = [];
@@ -139,7 +138,7 @@ class RedisEngine extends BaseEngine
         return ! in_array(false, $result);
     }
 
-    public function closeConnection() : bool
+    public function closeConnection(): bool
     {
         if ($this->Redis instanceof Redis && ! $this->config['persistent']) {
             $this->Redis->close();
