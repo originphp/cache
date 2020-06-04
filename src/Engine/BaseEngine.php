@@ -31,10 +31,20 @@ abstract class BaseEngine
         if (method_exists($this, 'initialize')) {
             $this->initialize($config);
         }
+    }
 
-        if (isset($config['duration']) && ! is_numeric($config['duration'])) {
-            $this->config['duration'] = strtotime($this->config['duration']) - time();
+    /**
+     * Gets the duration
+     *
+     * @return integer|null
+     */
+    protected function duration() : ?int
+    {
+        $duration = $this->config['duration'] ?? null;
+        if (is_string($duration)) {
+            $duration = strtotime($this->config['duration']) - time();
         }
+        return $duration;
     }
 
     /**

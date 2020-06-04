@@ -72,11 +72,12 @@ class RedisEngine extends BaseEngine
             $value = serialize($value);
         }
     
-        if ($this->config['duration'] === 0) {
+        $duration = $this->duration();
+        if ($duration === 0) {
             return $this->Redis->set($this->key($key), $value);
         }
 
-        return $this->Redis->setex($this->key($key), $this->config['duration'], $value);
+        return $this->Redis->setex($this->key($key), $duration, $value);
     }
     /**
      * Gets the value;
@@ -168,8 +169,9 @@ class RedisEngine extends BaseEngine
     {
         $key = $this->key($key);
         $value = (int) $this->Redis->incrBy($key, $offset);
-        if ($this->config['duration'] > 0) {
-            $this->Redis->expire($key, $this->config['duration']);
+        $duration = $this->duration();
+        if ($duration > 0) {
+            $this->Redis->expire($key, $duration);
         }
 
         return $value;
@@ -186,8 +188,9 @@ class RedisEngine extends BaseEngine
     {
         $key = $this->key($key);
         $value = (int) $this->Redis->decr($key, $offset);
-        if ($this->config['duration'] > 0) {
-            $this->Redis->expire($key, $this->config['duration']);
+        $duration = $this->duration();
+        if ($duration > 0) {
+            $this->Redis->expire($key, $duration);
         }
 
         return $value;

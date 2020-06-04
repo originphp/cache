@@ -46,7 +46,7 @@ class ApcuEngine extends BaseEngine
      */
     public function write(string $key, $value): bool
     {
-        return apcu_store($this->key($key), $value, $this->config['duration']);
+        return apcu_store($this->key($key), $value, $this->duration());
     }
     /**
      * reads a value from the cache

@@ -62,7 +62,7 @@ class FileEngine extends BaseEngine
     {
         if ($this->exists($key)) {
             $filename = $this->config['path'] . '/' . $this->key($key);
-            $expires = filemtime($filename) + $this->config['duration'];
+            $expires = filemtime($filename) + $this->duration();
             if ($expires > time()) {
                 $data = file_get_contents($filename);
                 if ($this->config['serialize'] === true) {
@@ -83,7 +83,7 @@ class FileEngine extends BaseEngine
     {
         $filename = $this->config['path'] . '/' . $this->key($key);
         if (file_exists($filename)) {
-            $expires = filemtime($filename) + $this->config['duration'];
+            $expires = filemtime($filename) + $this->duration();
 
             return $expires >= time();
         }

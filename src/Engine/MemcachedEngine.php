@@ -113,7 +113,7 @@ class MemcachedEngine extends BaseEngine
      */
     public function write(string $key, $value): bool
     {
-        return $this->Memcached->set($this->key($key), $value, $this->config['duration']);
+        return $this->Memcached->set($this->key($key), $value, $this->duration());
     }
     /**
      * Gets the value;
