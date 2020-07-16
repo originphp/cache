@@ -38,12 +38,13 @@ abstract class BaseEngine
      *
      * @return integer|null
      */
-    protected function duration() : ?int
+    protected function duration(): ?int
     {
         $duration = $this->config['duration'] ?? null;
         if (is_string($duration)) {
             $duration = strtotime($this->config['duration']) - time();
         }
+
         return $duration;
     }
 
