@@ -21,6 +21,7 @@ class FileEngine extends BaseEngine
         'duration' => 3600,
         'prefix' => 'origin_',
         'serialize' => true,
+        'mode' => 0664
     ];
 
     public function initialize(array $config = []): void
@@ -50,7 +51,33 @@ class FileEngine extends BaseEngine
             $value = serialize($value);
         }
 
-        return (bool) file_put_contents($this->config['path'] . '/' . $this->key($key), $value, LOCK_EX);
+        $cacheFile = $this->config['path'] . '/' . $this->key($key);
+        $exists = file_exists($cacheFile);
+        
+        $result = (bool) file_put_contents($cacheFile, $value, LOCK_EX);
+
+        if (! $exists) {
+            $this->applyPermissions($cacheFile);
+        }
+        
+        return $result;
+    }
+
+    /**
+     * Applies the default permissions to cache file
+     *
+     * @param string $cacheFile
+     * @return void
+     */
+    private function applyPermissions(string $cacheFile): void
+    {
+        if (! chmod($cacheFile, (int) $this->config['mode'])) {
+            trigger_error(sprintf(
+                'Unable to set %s permission for %s',
+                $this->config['mode'],
+                $cacheFile
+            ), E_USER_WARNING);
+        }
     }
     /**
      * Gets the value;
