@@ -138,11 +138,12 @@ class FileEngine extends BaseEngine
      */
     public function clear(): bool
     {
-        $files = scandir($this->config['path']);
         $result = [];
+        $files = array_diff(scandir($this->config['path']), ['..', '.']);
+        $prefixLength = strlen($this->config['prefix']);
         foreach ($files as $file) {
-            if (substr($file, 0, strlen($this->config['prefix'])) == $this->config['prefix']) {
-                $result[] = (unlink($this->config['path'] . '/' . $file) === true);
+            if (substr($file, 0, $prefixLength) === $this->config['prefix']) {
+                $result[] = unlink($this->config['path'] . '/' . $file) === true;
             }
         }
 

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed FileEngine issue in retrieving values when serialization is disabled
+- Fixed FileEngine issue when clearing cache with multiple cache configurations using subdirectories
 
 ## [1.2.4] - 2020-07-23
 
