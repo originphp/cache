@@ -111,7 +111,7 @@ class FileEngine extends BaseEngine
         if (file_exists($filename)) {
             $expires = filemtime($filename) + $this->duration();
 
-            return $expires >= time();
+            return $expires > time();
         }
 
         return  false;
