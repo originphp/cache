@@ -111,4 +111,13 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
         $cache->write('object', $object);
         $this->assertEquals($object, $cache->read('object'));
     }
+
+    public function testWithoutSerialize()
+    {
+        $cache = new FileEngine(['path' => sys_get_temp_dir() .'/cache-test','serialize' => false]);
+
+        $data = 'The quick brown fox jumps over the lazy dog';
+        $cache->write('test', $data);
+        $this->assertEquals($data, $cache->read('test'));
+    }
 }

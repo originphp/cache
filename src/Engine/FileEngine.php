@@ -92,9 +92,8 @@ class FileEngine extends BaseEngine
             $expires = filemtime($filename) + $this->duration();
             if ($expires > time()) {
                 $data = file_get_contents($filename);
-                if ($this->config['serialize'] === true) {
-                    return unserialize($data);
-                }
+
+                return $this->config['serialize'] ? unserialize($data) : $data;
             }
         }
 
