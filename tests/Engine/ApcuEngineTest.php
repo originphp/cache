@@ -1,7 +1,7 @@
 <?php
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2019 Jamiel Sharief.
+ * Copyright 2018 - 2021 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
@@ -57,7 +57,7 @@ class ApcuEngineTest extends \PHPUnit\Framework\TestCase
     public function testGet()
     {
         $cache = $this->engine();
-        $this->assertFalse($cache->read('foo'));
+        $this->assertNull($cache->read('foo'));
         $cache->write('foo', 'bar');
         $this->assertEquals('bar', $cache->read('foo'));
     }

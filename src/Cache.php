@@ -1,7 +1,7 @@
 <?php
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2020 Jamiel Sharief.
+ * Copyright 2018 - 2021 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
@@ -99,7 +99,7 @@ class Cache
     }
 
     /**
-     * Reads an item from the Cache
+     * Reads an item from the cache, and returns null if there is no hit.
      *
      * @param string $key name of the key
      * @param array $options You can pass an array of options with the folling keys :

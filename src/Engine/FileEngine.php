@@ -1,7 +1,7 @@
 <?php
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2020 Jamiel Sharief.
+ * Copyright 2018 - 2021 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
@@ -80,7 +80,7 @@ class FileEngine extends BaseEngine
         }
     }
     /**
-     * Gets the value;
+     * Reads a value from the cache, and returns null if there is no hit.
      *
      * @param string $key
      * @return mixed
@@ -97,7 +97,7 @@ class FileEngine extends BaseEngine
             }
         }
 
-        return false;
+        return null;
     }
     /**
      * Checks if a key exists in the cache

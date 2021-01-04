@@ -1,7 +1,7 @@
 <?php
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2020 Jamiel Sharief.
+ * Copyright 2018 - 2021 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
@@ -115,16 +115,18 @@ class MemcachedEngine extends BaseEngine
     {
         return $this->Memcached->set($this->key($key), $value, $this->duration());
     }
+    
     /**
-     * Gets the value;
-     * @todo returns false always
+     * Reads a value from the cache, and returns null if there is no hit.
+     *
      * @param string $key
      * @return mixed
      */
     public function read(string $key)
     {
-        return $this->Memcached->get($this->key($key));
+        return $this->Memcached->get($this->key($key)) ?: null;
     }
+
     /**
      * Checks if a key exists in the cache
      *

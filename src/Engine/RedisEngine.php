@@ -1,7 +1,7 @@
 <?php
 /**
  * OriginPHP Framework
- * Copyright 2018 - 2020 Jamiel Sharief.
+ * Copyright 2018 - 2021 Jamiel Sharief.
  *
  * Licensed under The MIT License
  * The above copyright notice and this permission notice shall be included in all copies or substantial
@@ -80,17 +80,17 @@ class RedisEngine extends BaseEngine
         return $this->Redis->setex($this->key($key), $duration, $value);
     }
     /**
-     * Gets the value;
-     * @todo returns false always
+     * Reads a value from the cache, and returns null if there is no hit.
+     *
      * @param string $key
-     * @return false
+     * @return mixed
      */
     public function read(string $key)
     {
         $value = $this->Redis->get($this->key($key));
 
         if ($value === false) {
-            return false;
+            return null;
         }
         if (preg_match('/\d+$/', $value)) {
             return (int) $value;
