@@ -41,7 +41,7 @@ jobs:
           coverage: "xdebug"
           php-version: "${{ matrix.php-version }}"
           tools: composer:v2
-          extensions: apcu, redis, memcached
+          extensions: apcu
           ini-values: apc.enable_cli = 1
       - name: Install dependencies
         run: |
