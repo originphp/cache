@@ -1,7 +1,7 @@
 # Cache
 
 ![license](https://img.shields.io/badge/license-MIT-brightGreen.svg)
-[![build](https://travis-ci.org/originphp/cache.svg?branch=master)](https://travis-ci.org/originphp/cache)
+[![build](https://github.com/originphp/cache/workflows/CI/badge.svg)](https://github.com/originphp/cache/actions)
 [![coverage](https://coveralls.io/repos/github/originphp/cache/badge.svg?branch=master)](https://coveralls.io/github/originphp/cache?branch=master)
 
 The OriginPHP Cache library `Apcu`, `Memcached` and `Redis` out of the box, you can also use file caching for large objects or time consuming generating content.
@@ -44,7 +44,7 @@ $success = Cache::write('key',$value);
 
 ### Read
 
-> In version read will return `null` instead of `false` as in previous versions.
+> From version 3.x when reading from the cache, if there is no hit then it will return `null` instead of `false` as in previous versions.
 
 To read an item from the cache, if it does not find an item it will return `null`
 

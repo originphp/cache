@@ -80,7 +80,7 @@ class RedisEngine extends BaseEngine
         return $this->Redis->setex($this->key($key), $duration, $value);
     }
     /**
-     * Gets the value
+     * Reads a value from the cache, and returns null if there is no hit.
      *
      * @param string $key
      * @return mixed

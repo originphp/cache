@@ -99,7 +99,7 @@ class Cache
     }
 
     /**
-     * Reads an item from the Cache
+     * Reads an item from the cache, and returns null if there is no hit.
      *
      * @param string $key name of the key
      * @param array $options You can pass an array of options with the folling keys :

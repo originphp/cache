@@ -39,8 +39,8 @@ class ArrayEngine extends BaseEngine
         return true;
     }
     /**
-     * Gets the value;
-     * @todo returns false always
+     * Reads a value from the cache, and returns null if there is no hit.
+     *
      * @param string $key
      * @return mixed
      */

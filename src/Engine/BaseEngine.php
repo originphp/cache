@@ -58,7 +58,7 @@ abstract class BaseEngine
     abstract public function write(string $key, $value): bool;
 
     /**
-     * reads the value, if there is no value it will return null
+     * Reads a value from the cache, and returns null if there is no hit.
      *
      * @param string $key
      * @return mixed

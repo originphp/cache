@@ -117,7 +117,8 @@ class MemcachedEngine extends BaseEngine
     }
     
     /**
-     * Gets the value
+     * Reads a value from the cache, and returns null if there is no hit.
+     *
      * @param string $key
      * @return mixed
      */
