@@ -49,8 +49,6 @@ jobs:
           composer update --no-progress --prefer-dist
       - name: Run PHPUnit
         run: "php vendor/bin/phpunit --coverage-clover=clover.xml"
-        REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
-        MEMCACHED_PORT: ${{ job.services.memcached.ports['11211'] }}
       - name: Coveralls
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
