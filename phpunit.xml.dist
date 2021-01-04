@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    colors="true"
-    processIsolation="false"
-    stopOnFailure="false"
-    bootstrap="vendor/autoload.php"
-    backupGlobals="true"
-    >
-    <testsuites>
-        <testsuite name="OriginPHP Cache">
-            <directory>./tests/</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">./src/</directory>
-        </whitelist>
-    </filter>
-    <php>
-       <const name="PHPUNIT" value="true"/>
-       <env name="ORIGIN_ENV" value="test"/>
-       <env name="REDIS_HOST" value="redis"/>
-       <env name="REDIS_PORT" value="6379"/>
-       <env name="MEMCACHED_HOST" value="memcached"/>
-       <env name="MEMCACHED_PORT" value="11211"/>
-    </php>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" processIsolation="false" stopOnFailure="false" bootstrap="vendor/autoload.php" backupGlobals="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory suffix=".php">./src/</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="OriginPHP Cache">
+      <directory>./tests/</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <const name="PHPUNIT" value="true"/>
+    <env name="ORIGIN_ENV" value="test"/>
+    <env name="REDIS_HOST" value="redis"/>
+    <env name="REDIS_PORT" value="6379"/>
+    <env name="MEMCACHED_HOST" value="memcached"/>
+    <env name="MEMCACHED_PORT" value="11211"/>
+  </php>
 </phpunit>
