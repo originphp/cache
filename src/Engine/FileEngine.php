@@ -80,7 +80,7 @@ class FileEngine extends BaseEngine
         }
     }
     /**
-     * Gets the value;
+     * Gets the value
      *
      * @param string $key
      * @return mixed
@@ -97,7 +97,7 @@ class FileEngine extends BaseEngine
             }
         }
 
-        return false;
+        return null;
     }
     /**
      * Checks if a key exists in the cache

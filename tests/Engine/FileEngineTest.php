@@ -38,7 +38,7 @@ class FileEngineTest extends \PHPUnit\Framework\TestCase
     public function testGet()
     {
         $cache = new FileEngine();
-        $this->assertFalse($cache->read('foo'));
+        $this->assertNull($cache->read('foo'));
         $cache->write('foo', 'bar');
         $this->assertEquals('bar', $cache->read('foo'));
     }

@@ -30,7 +30,7 @@ class NullEngineTest extends \PHPUnit\Framework\TestCase
     {
         $cache = new NullEngine();
         $cache->write('foo', 'bar');
-        $this->assertFalse($cache->read('foo'));
+        $this->assertNull($cache->read('foo'));
     }
     /**
      * @depends testSet

@@ -115,16 +115,17 @@ class MemcachedEngine extends BaseEngine
     {
         return $this->Memcached->set($this->key($key), $value, $this->duration());
     }
+    
     /**
-     * Gets the value;
-     * @todo returns false always
+     * Gets the value
      * @param string $key
      * @return mixed
      */
     public function read(string $key)
     {
-        return $this->Memcached->get($this->key($key));
+        return $this->Memcached->get($this->key($key)) ?: null;
     }
+
     /**
      * Checks if a key exists in the cache
      *

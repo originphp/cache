@@ -56,7 +56,7 @@ class ApcuEngine extends BaseEngine
      */
     public function read(string $key)
     {
-        return apcu_fetch($this->key($key));
+        return apcu_fetch($this->key($key)) ?: null;
     }
     /**
      * Checks if a key exists in the cache

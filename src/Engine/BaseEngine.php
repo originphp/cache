@@ -58,8 +58,8 @@ abstract class BaseEngine
     abstract public function write(string $key, $value): bool;
 
     /**
-     * reads the value;
-     * @todo returns false always
+     * reads the value, if there is no value it will return null
+     *
      * @param string $key
      * @return mixed
      */

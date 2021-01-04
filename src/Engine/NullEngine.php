@@ -33,15 +33,16 @@ class NullEngine extends BaseEngine
         return true;
     }
     /**
-     * Gets the value;
-     * @todo returns false always
+     * Gets the value
+     *
      * @param string $key
-     * @return mixed // keep consistent
+     * @return mixed
      */
     public function read(string $key)
     {
-        return false;
+        return null;
     }
+
     /**
      * Checks if a key exists in the cache
      *

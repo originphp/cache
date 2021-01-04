@@ -47,11 +47,8 @@ class ArrayEngine extends BaseEngine
     public function read(string $key)
     {
         $key = $this->key($key);
-        if ($this->exists($key)) {
-            return $this->data[$key];
-        }
 
-        return false;
+        return $this->data[$key] ?? null;
     }
     /**
      * Checks if a key exists in the cache

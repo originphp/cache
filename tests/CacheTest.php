@@ -44,7 +44,7 @@ class CacheTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue(Cache::exists('foo'));
         # Delete
         Cache::delete('foo');
-        $this->assertFalse(Cache::read('foo'));
+        $this->assertNull(Cache::read('foo'));
         $this->assertFalse(Cache::exists('foo'));
     }
 
@@ -52,7 +52,7 @@ class CacheTest extends \PHPUnit\Framework\TestCase
     {
         Cache::disable();
         Cache::write('foo', 'bar');
-        $this->assertFalse(Cache::read('foo'));
+        $this->assertNull(Cache::read('foo'));
         Cache::enable();
         Cache::write('foo', 'bar');
         $this->assertEquals('bar', Cache::read('foo'));
@@ -62,7 +62,7 @@ class CacheTest extends \PHPUnit\Framework\TestCase
     {
         Cache::write('foo', 'bar');
         Cache::clear();
-        $this->assertFalse(Cache::read('foo'));
+        $this->assertNull(Cache::read('foo'));
     }
 
     public function testUnkownConfig()

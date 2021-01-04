@@ -44,7 +44,9 @@ $success = Cache::write('key',$value);
 
 ### Read
 
-To read an item from the cache, if it does not find an item it will return `false`
+> In version read will return `null` instead of `false` as in previous versions.
+
+To read an item from the cache, if it does not find an item it will return `null`
 
 ```php
 Use Origin\Cache\Cache;

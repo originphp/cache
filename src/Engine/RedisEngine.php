@@ -80,17 +80,17 @@ class RedisEngine extends BaseEngine
         return $this->Redis->setex($this->key($key), $duration, $value);
     }
     /**
-     * Gets the value;
-     * @todo returns false always
+     * Gets the value
+     *
      * @param string $key
-     * @return false
+     * @return mixed
      */
     public function read(string $key)
     {
         $value = $this->Redis->get($this->key($key));
 
         if ($value === false) {
-            return false;
+            return null;
         }
         if (preg_match('/\d+$/', $value)) {
             return (int) $value;
