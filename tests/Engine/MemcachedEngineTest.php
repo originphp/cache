@@ -34,7 +34,7 @@ class MemcachedEngineTest extends \PHPUnit\Framework\TestCase
         if (! extension_loaded('memcached')) {
             $this->markTestSkipped('Memcached extension not loaded');
         }
-        if (! getenv('MEMCACHED_HOST') or ! getenv('MEMCACHED_PORT')) {
+        if (! getenv('MEMCACHED_HOST') || ! getenv('MEMCACHED_PORT')) {
             $this->markTestSkipped('Memcached settings not found');
         }
 
@@ -181,8 +181,8 @@ class MemcachedEngineTest extends \PHPUnit\Framework\TestCase
     public function testAddMultipleServers()
     {
         $servers = [
-            [getenv('MEMCACHED_HOST'), 11211],
-            [getenv('MEMCACHED_HOST'), 11211],
+            [getenv('MEMCACHED_HOST'),getenv('MEMCACHED_PORT')],
+            [getenv('MEMCACHED_HOST'),getenv('MEMCACHED_PORT')],
         ];
         $memcached = new MockMemcachedEngine([
             'servers' => $servers,
