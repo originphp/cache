@@ -160,7 +160,7 @@ class RedisEngineTest extends \PHPUnit\Framework\TestCase
     {
         $redis = new MockRedisEngine([
             'host' => getenv('REDIS_HOST'),
-            'port' => getenv('REDIS_PORT'),
+            'port' => (int) getenv('REDIS_PORT'),
             'duration' => 0,
             'prefix' => 'origin_',
             'persistent' => 'persisten-id',
