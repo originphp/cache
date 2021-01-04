@@ -37,7 +37,8 @@ jobs:
           coverage: "xdebug"
           php-version: "${{ matrix.php-version }}"
           tools: composer:v2
-          extensions: apcu
+          extensions: apcu, redis, memcached
+          ini-values: apc.enable_cli = 1, extension = redis.so, extension = memcached.so
       - name: Install dependencies
         run: |
           composer require php-coveralls/php-coveralls:^2.4 --dev --no-update
